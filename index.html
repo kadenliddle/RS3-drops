@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="RuneScape 3 drop calculator — average boss kills until a rare drop." />
+  <title>RS3 Drop Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-glow" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <h1>RS3 Drop Calculator</h1>
+        <p class="tagline">Average kills until that rare lands</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel controls" aria-labelledby="controls-heading">
+      <h2 id="controls-heading" class="panel-title">Select drop</h2>
+
+      <label class="field">
+        <span class="field-label">Boss</span>
+        <select id="boss-select"></select>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Item</span>
+        <select id="item-select"></select>
+      </label>
+
+      <p id="boss-notes" class="hint" hidden></p>
+      <p id="item-notes" class="hint" hidden></p>
+    </section>
+
+    <section class="panel result" aria-live="polite" aria-labelledby="result-heading">
+      <h2 id="result-heading" class="panel-title">Expected kills</h2>
+
+      <div class="hero-stat">
+        <span class="hero-label">Average kills</span>
+        <span id="avg-kills" class="hero-value">—</span>
+      </div>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <span class="stat-label">Drop rate</span>
+          <span id="rate-fraction" class="stat-value mono">—</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Probability</span>
+          <span id="rate-percent" class="stat-value mono">—</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Per kill</span>
+          <span id="rate-decimal" class="stat-value mono">—</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel chance" aria-labelledby="chance-heading">
+      <h2 id="chance-heading" class="panel-title">Chance after N kills</h2>
+      <p class="hint inline">Uses <span class="mono">1 − (1 − p)<sup>N</sup></span></p>
+
+      <label class="field inline-field">
+        <span class="field-label">Kills (N)</span>
+        <input id="kills-input" type="number" min="1" step="1" value="100" />
+      </label>
+
+      <div class="chance-meter" aria-hidden="true">
+        <div id="chance-bar" class="chance-bar"></div>
+      </div>
+
+      <div class="chance-readout">
+        <span id="chance-percent" class="chance-value mono">—</span>
+        <span class="chance-caption">chance of at least one drop</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>
+      Drop rates sourced from the
+      <a href="https://runescape.wiki" target="_blank" rel="noopener noreferrer">RuneScape Wiki</a>
+      and official Jagex reveals. Rates can change with game updates — verify on the wiki before relying on them.
+    </p>
+    <p class="footer-meta">Zero-build static app · RuneScape © Jagex</p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
